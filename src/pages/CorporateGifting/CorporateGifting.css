@@ -1,0 +1,381 @@
+.celebration-banner {
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-start; */
+  background-image: url('/assets/img/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  padding: 20px;
+ 
+}
+
+.banner-content {
+  max-width: 100%;
+}
+
+.banner-content h1 {
+  font-size: 3.5rem; 
+  font-weight: bold;
+   color: var(--primary-color) !important; 
+   position: relative;
+   left: 100px;
+}
+
+
+/* Wrapper */
+.corporate-gifting {
+  background-color: #f8e8d1;
+  padding: 40px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1300px;
+  margin: 0 auto;
+  height: 430px;
+  margin-top: 50px;
+}
+
+/* Content Container */
+.corporate-gifting-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  /* width: ; */
+}
+.brand-description h2{
+  color: var(--accent-color) !important;
+}
+
+/* Text Section */
+.text-section {
+  flex: 1;
+  text-align: left;
+}
+
+.text-section .gift-icon {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  /* text-align: center; */
+  align-items: center;
+}
+
+.text-section h2 {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.text-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  text-align: center;
+}
+
+/* Image Section */
+.image-section {
+  flex: 1;
+  text-align: right;
+}
+
+/*  */
+
+.image-section img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .corporate-gifting-content {
+    flex-direction: row;
+    text-align: center;
+  }
+
+  .text-section {
+    margin-bottom: 20px;
+  }
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .celebration-banner {
+    padding: 10px;
+  }
+
+  .banner-content h1 {
+    font-size: 2rem;
+  }
+
+  .whatsapp-icon img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+
+.corporate-experiences {
+  text-align: center;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 46px;
+  color: var(--accent-color) !important;
+  font-weight: bold;
+}
+
+.pro-download-link-box{
+  background: var(--secondary-color);
+  color: var(--accent-color);
+}
+
+.subtitle {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* Ensure the cards wrap on smaller screens */
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover .card-image {
+  transform: scale(1.1);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-color); /* Red overlay */
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-overlay h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-overlay p {
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .card {
+    width: 90%; /* Adjust width for smaller screens */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .card-overlay h3 {
+    font-size: 1.2rem; /* Smaller font size for mobile */
+  }
+
+  .card-overlay p {
+    font-size: 0.9rem;
+  }
+
+  .title {
+    font-size: 1.8rem; /* Adjust title size */
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+
+.products-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.products-container h2 {
+  font-size: 2rem;
+  color: var(--accent-color);
+}
+
+.products-container p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  margin: 20px 0;
+}
+
+.btn {
+  background-color: #f4e3cf;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.products-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.product-img {
+  border-radius: 10px;
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+}
+
+.product-img.tall {
+  height: 310px;
+}
+
+.product-img.wide {
+  width: 320px;
+  height: 150px;
+}
+
+
+
+.corporate-product-gallery{
+    padding: 48px !important;
+}
+
+
+.contact-form-container {
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 600px;
+}
+
+h2 {
+  font-size: 46px;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+}
+
+.email-link,
+.phone-link {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.email-link:hover,
+.phone-link:hover {
+  text-decoration: underline;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea,
+.contact-form button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  background-color: #f4e3cf;
+  color: #333;
+}
+
+.contact-form textarea {
+  resize: none;
+}
+
+.contact-form button {
+  background-color: #f4e3cf;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.contact-form button:hover {
+  background-color: #d4c1a5;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border: 1px solid var(--accent-color);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--accent-color);
+}

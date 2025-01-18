@@ -1,0 +1,66 @@
+.celebration-banner {
+  display: flex;
+  align-items: center;
+  /* justify-content: flex-start; */
+  background-image: url('/assets/img/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  padding: 20px;
+ 
+}
+
+.banner-content {
+  max-width: 100%;
+}
+
+.banner-content h1 {
+  font-size: 3.5rem; 
+  font-weight: bold;
+   color: var(--accent-color); 
+   position: relative;
+   left: 100px;
+}
+
+.who-we{
+  padding: 50px !important;
+}
+.our-values{
+  padding: 50px !important;
+}
+.our-values h2{
+  font-size: 46px;
+}
+
+.values-left img{
+  height: 29px;
+  width: 29px;
+}
+
+@media(max-width:550px){
+  .banner-content h1{
+    font-size: 1.5rem;
+  }
+}
+
+.our-staff h4{
+  color: var(--accent-color);
+}
+
+.who-we-right h4{
+  color: var(--accent-color);
+}
+
+.about-testimonial{
+  background-color: var(--accent-color);
+}
+
+.our-values span{
+  color: var(--accent-color);
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.values-left h6{
+  color: var(--accent-color);
+}

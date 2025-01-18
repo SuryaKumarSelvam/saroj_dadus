@@ -1,0 +1,167 @@
+.tabs-container-profile {
+  width: 100%;
+  /* max-width: 800px; */
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Tabs Header */
+.tabs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Center Tabs */
+.tabs-center {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+/* Tab Buttons */
+.tab-button {
+  font-size: 16px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  color: #333;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  border-bottom: 3px solid transparent;
+  background-color:transparent;
+  border: 1px solid var(--accent-color);
+}
+
+.tab-button.active {
+  color: #fff;
+  /* border-bottom: 3px solid black; */
+}
+
+/* Logout Button Container */
+.logout-container {
+  margin-left: auto;
+  padding-right: 100px;
+}
+
+.logout-button {
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+}
+
+.logout-button:hover {
+  color: #555;
+}
+
+/* Tab Content */
+.tab-content {
+  padding: 40px 20px;
+}
+
+/* Orders Tab Styling */
+.orders-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box-icon {
+  font-size: 60px;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+
+.no-orders-text {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.continue-button {
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.continue-button:hover {
+  background-color: #fff;
+  color: #e5c37a;
+}
+
+/* Addresses Tab Styling */
+.addresses-tab {
+  padding: 20px;
+  font-size: 18px;
+  color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+
+.addresses-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.addresses-list {
+  display: flex;
+  gap: 20px;
+}
+
+.address-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  width: 300px;
+}
+
+.address-heading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.address-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.edit-button,
+.delete-button,
+.add-address-button {
+  padding: 10px 15px;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-address-button {
+  margin-top: 20px;
+  background: #f9f9f9;
+  border: 1px solid #d9d9d9;
+}
