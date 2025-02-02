@@ -251,7 +251,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
   border-bottom: 1px solid #ddd;
 }
 
@@ -269,21 +269,52 @@
 }
 
 .products-count {
-  font-size: 14px;
-  color: #7f7f7f;
+  font-size: 20px;
+  color: var(--accent-color);
+  font-weight: 600;
+
 }
 
 .sort-by {
   display: flex;
+  position: relative;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
+  color: var(--accent-color);
+}
+.sort-by label{
+  font-size: 20px;
+  color: var(--accent-color);
+  font-weight: 5600;
+  margin-right: 8px;
 }
 
 .sort-dropdown {
   padding: 5px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-size: 18px;
+  border: none;
+  
+}
+.sort-dropdown:hover {
+  background-color: transparent; 
+}
+
+.sort-dropdown option {
+  background-color:transparent;
+  color: var(--accent-color); 
+  padding: 8px;
+  border: none !important;
+}
+
+
+.sort-dropdown option:checked {
+  background-color: var(--primary-color);
+  color: #fff; 
+}
+
+
+.sort-dropdown:focus {
+  outline: none;
 }
 
 /* Banner Section */
@@ -303,32 +334,33 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.banner-content {
+.banner-content-product {
   position: absolute;
-  top: 50%;
-  left: 0%;
-  /* transform: translate(-50%, -50%); */
+  top: 50% !important;
+  left: 5% !important;
   text-align: center;
 }
 
 .banner-title {
   font-size: 36px;
   font-weight: bold;
-  color: #d1ad6f; /* Gold theme */
+  color: var(--primary-color);
+  left: 5px;
   margin: 0 0 10px; 
 }
 
 .breadcrumb {
-  font-size: 14px;
-  color: #ffffff; 
+  font-size: 18px;
+  color: var(--accent-color); 
   /* margin: 0; */
-  text-align: center;
+  text-align: left;
 }
 
 .breadcrumb a {
   text-decoration: none;
-  color: #d1ad6f; /* Gold color for breadcrumb links */
+  color: var(--accent-color); /* Gold color for breadcrumb links */
   font-weight: bold;
+  text-align: left !important;
 }
 
 .breadcrumb a:hover {
@@ -336,7 +368,7 @@
 }
 
 .breadcrumb span {
-  color: #f5f5f5; /* Breadcrumb separator color */
+  color: var(--primary-color); /* Breadcrumb separator color */
 }
 
 
@@ -390,4 +422,16 @@
     color: #fff;
     padding: 5px 6px;
     border-radius: 3px;
+}
+
+
+.weight-button.active {
+  border-color: #000;
+  background-color: var(--accent-color);
+  font-weight: bold;
+}
+
+.price-with-rate{
+  display: flex;
+  justify-content: space-between;
 }

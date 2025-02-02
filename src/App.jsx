@@ -18,6 +18,9 @@ import { DynamicTitle } from './components/DynamicTitle/DynamicTitle'
 import { CheckOut } from './pages/Checkout/CheckOut'
 import Products from './components/Products/Products'
 import Profile from './pages/Profile/Profile'
+import ProductDetail from './pages/ProductDetails/ProductDetail'
+import Cart from './pages/Cart/Cart'
+import { Toaster } from "react-hot-toast";
 
 
 function App() {
@@ -28,6 +31,7 @@ function App() {
     <DynamicTitle/>
     <Header/>
      <Nav/>
+      <Toaster position="top-right" reverseOrder={false} />
      <Routes>
       <Route path='/login' element={<Login/>}/>
       <Route path='/signup' element={<SignUp/>}/>
@@ -37,6 +41,8 @@ function App() {
       <Route path='/about-us' element={<About/>}/>
       <Route path='/contact-us' element={<Contact/>}/>
       <Route path='/products/:categoryName/:subCategoryName/:categoryId' element={<Products/>}/>
+      <Route path='/product/:productName/:id' element={<ProductDetail/>}/>
+      <Route path='/cart' element={<Cart/>}/>
       <Route path='/checkout' element={<CheckOut/>}/>
      </Routes>
      <Footer/>

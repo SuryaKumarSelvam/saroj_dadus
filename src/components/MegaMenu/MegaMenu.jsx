@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './MegaMenu.css';
-import axiosInstance from '../../utils/axiosInstance';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCategories } from '../../features/categoriesSlice';
 import { Link } from 'react-router-dom';
 
-const MegaMenu = () => {
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true); // For showing loader
-
+const MegaMenu = ({closeMenu}) => {
+  const dispatch = useDispatch();
+  const { categories, loading, error } = useSelector((state) => state.categories);
+console.log(categories)
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await axiosInstance.get('subcategories/grouped-by-category');
-        setCategories(response.data);
-      } catch (err) {
-        console.error('Error fetching categories:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  console.log(categories)
-
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories.length]);
   if (loading) {
     return (
       <div className="mega-menu">
@@ -43,6 +32,10 @@ const MegaMenu = () => {
     );
   }
 
+  if (error) {
+    return <div>Error loading categories: {error}</div>;
+  }
+
   return (
     <div className="mega-menu">
       {categories.map((category, index) => (
@@ -51,17 +44,17 @@ const MegaMenu = () => {
             src={category.image || 'https://dadus.co.in/cdn/shop/files/title_banner_400_205_286x.jpg?v=1728976529c'}
             alt={category.name || 'Category Image'}
             className="menu-image"
-            loading="lazy" // Lazy loading
+            loading="lazy"
           />
           <h4>{category.categoryName || 'Category Name'}</h4>
           <ul>
             {category.subcategories?.length > 0 ? (
               category.subcategories.map((sub, subIndex) => (
                 <li key={sub._id || subIndex}>
-                  <Link to={`/products/${category.categoryName}/${sub.name}/${category.categoryId}`}>
-                  {sub.name || 'Subcategory Name'}
+                  <Link to={`/products/${category.categoryName}/${sub.name}/${sub._id}`} onClick={closeMenu} >
+                    {sub.name || 'Subcategory Name'}
                   </Link>
-                  </li>
+                </li>
               ))
             ) : (
               <li>No subcategories available</li>
@@ -70,28 +63,7 @@ const MegaMenu = () => {
         </div>
       ))}
     </div>
-
-    //       <div className="mega-menu">
-    // {
-    //   categories.map((category,index)=>(
-    //      <div className="menu-section">
-    //     <img
-    //       src="https://dadus.co.in/cdn/shop/files/Desktop_-_Category_Tiles_-_Indian_Mithai_286x.jpg?v=1690952010" // Replace with actual image URL
-    //       alt="Indian Mithai"
-    //       className="menu-image"
-    //     />
-    //     <h4>Indian Mithai</h4>
-    //     <ul>
-    //       <li>Milk Mithai</li>
-    //       <li>Dry Fruits Mithai</li>
-    //       <li>Less Sugar Mithai</li>
-    //       <li>Bites and Chikkis</li>
-    //     </ul>
-    //   </div>
-    //   ))
-    // }
-    // </div>
   );
 };
 
-export default React.memo(MegaMenu); // Prevent unnecessary re-renders
+export default MegaMenu;

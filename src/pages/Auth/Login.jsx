@@ -4,6 +4,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import {TextField,Select,MenuItem} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import {login} from '../../features/userActions'
+import toast,{Toaster} from 'react-hot-toast'
 
 const Login = () => {
   const [formData,setFormData] = useState(
@@ -16,6 +17,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.userData);
+
+
 
   
 const validate = ()=>{
@@ -34,7 +37,7 @@ const handleInputChange = (event)=>{
 
 }
 
- const handleSubmit = (e) => {
+ const handleSubmit = (event) => {
     event.preventDefault()
       if (validate()) {
         dispatch(login(formData,navigate));  
@@ -70,6 +73,7 @@ const handleInputChange = (event)=>{
         </form>
         <Link to="/signup" className='link'>Sign up</Link>
       </div>
+      <Toaster />
     </div>
   )
 }

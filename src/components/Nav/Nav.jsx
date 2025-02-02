@@ -5,8 +5,9 @@ import MegaMenu from "../MegaMenu/MegaMenu";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import CartSideBar from "../CartSideBar/CartSideBar";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCategories } from '../../features/categoriesSlice';
 const categories = [
     { name: "Indian Mithai", products: ["Milk Mithai", "Product 2"], image: "https://dadus.co.in/cdn/shop/files/Desktop_-_Category_Tiles_-_Indian_Mithai_286x.jpg?v=1690952010" },
     { name: "Festive Collection ", products: ["Product 3", "Product 4"] ,image:"https://dadus.co.in/cdn/shop/files/title_banner_400_205_286x.jpg?v=1728976529c"},
@@ -33,6 +34,14 @@ const Nav = () => {
 
   const navigate = useNavigate();
   const user = useSelector((state) => state.userData);
+  const {cartItems} = useSelector(state => state.cart);
+  const dispatch = useDispatch();
+  const { categories, loading, error } = useSelector((state) => state.categories);
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories.length]);
 
    const handleNavigation = () => {
     if (user.user != null) {
@@ -50,13 +59,11 @@ const Nav = () => {
     setIsHovered(true);
   };
 
-  const handleMouseLeave = () => {
-    // Only close the menu if the mouse leaves both the menu item and the mega menu
-    if (!isHovered) {
-      setShowMegaMenu(false);
-    }
-    setIsHovered(false);
-  };
+ const handleMouseLeave = () => {
+  setTimeout(() => {
+    setShowMegaMenu(false);
+  }, 200); // Adds delay for smooth effect
+};
 
   const handleMegaMenuHover = () => {
     setIsHovered(true);
@@ -96,11 +103,11 @@ const Nav = () => {
           </div>
            {showMegaMenu && (
           <div
-            className="mega-menu-wrapper"
+             className={`mega-menu-wrapper ${showMegaMenu ? 'show' : ''}`}
             onMouseEnter={handleMegaMenuHover}
             onMouseLeave={handleMegaMenuLeave}
           >
-            <MegaMenu />
+            <MegaMenu closeMenu={() => setShowMegaMenu(false)} />
           </div>
         )}
           <div className="menu-item"><Link to="/corporate-gifting">Corporate Gifting</Link></div>
@@ -113,7 +120,7 @@ const Nav = () => {
           <FaUser className="icon" onClick={handleNavigation}  />
           <div className="cart-icon">
             <FaShoppingCart onClick={toggleCart} />
-            <span className="cart-count">2</span>
+            <span className="cart-count">{cartItems.length}</span>
           </div>
            <CartSideBar isOpen={isCartOpen} toggleCart={toggleCart} />
           <FaBars className="mobile-menu-icon"
@@ -146,8 +153,8 @@ const Nav = () => {
               <div className="popular-searches">
                 {categories.map((category, index) => (
                   <div className="search-item" key={index}>
-                    <img src={category.image} alt={category.name} />
-                    <p>{category.name}</p>
+                    <img   src={category.image ? category.image : "https://dadus.co.in/cdn/shop/files/Desktop_-_Category_Tiles_-_Indian_Mithai_286x.jpg?v=1690952010"}  alt={category.name} />
+                    <p>{category.categoryName}</p>
                   </div>
                 ))}
               </div>

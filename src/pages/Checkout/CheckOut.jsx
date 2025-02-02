@@ -1,8 +1,9 @@
 import {React,useState} from 'react';
 import './CheckOut.css';
-import { Link } from 'react-router-dom';
+import { Link ,useLocation} from 'react-router-dom';
 import {TextField,Select,MenuItem} from '@mui/material';
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material";
+import {useSelector} from 'react-redux'
 
 export const CheckOut = () => {
     const [showBillingFields, setShowBillingFields] = useState(false);
@@ -21,6 +22,12 @@ export const CheckOut = () => {
         phone:"",
       }
     );
+
+    const { cartItems, totalPrice, totalQuantity } = useSelector(state => state.cart);
+    
+
+    const user = useSelector((state) => state.userData);
+
 
   const handlePaymentChange = (event) => {
     setPaymentMethod(event.target.value);
@@ -65,12 +72,18 @@ export const CheckOut = () => {
     }
 
 
+  const location = useLocation();
+  const { orderNote } = location.state || {};
+
   return (
      <div className="checkout-container">
       <div className="checkout-left">
         <div className="row">
         <h2>Delivery</h2>
-        <Link className='login' to='/login'>Login</Link>
+        {
+        user.user == null ? <Link className='login' to='/login'>Login</Link>
+             : null
+        }
         </div>
        {/* <Select
           labelId="demo-simple-select-helper-label"
@@ -204,7 +217,7 @@ export const CheckOut = () => {
       </div>
 
       <div className="checkout-right">
-        {/* {
+        {
           cartItems.map((item,index)=>(
           <div className="cart-item">
             <div className='image-container'>
@@ -212,14 +225,14 @@ export const CheckOut = () => {
               <div className="qty-badge">{item.quantity}</div>
                <div className="item-details">
             <p>{item.name}</p>
-            <span>Orange Box of 8 pieces</span>
+            <span>{item.weight} G</span>
           </div>
       </div>
          
           <span className="item-price">₹ {item.price * item.quantity}.00</span>
         </div>
           ))
-        } */}
+        }
         <div className="discount">
           <input type="text" placeholder="Discount code" />
           <button>Apply</button>
@@ -227,7 +240,7 @@ export const CheckOut = () => {
 
         <div className="total">
           <p>Subtotal • 
-            {/* {cartItems.length} items <span>₹ {totalAmount}.00</span> */}
+            {cartItems.length} items <span>₹ {totalPrice}.00</span>
           </p>
           <p>Shipping <span>₹ 200.00</span></p>
           <hr />

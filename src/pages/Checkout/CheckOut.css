@@ -87,8 +87,8 @@
 .qty-badge{
    position: absolute; 
    left: 40px;
-   bottom: 40px;
-  background-color: #6c5ce7; 
+   /* bottom: 40px; */
+  background-color: var(--accent-color); 
   color: white; 
   font-size: 10px;
   font-weight: bold;
@@ -138,17 +138,17 @@
   flex: 1;
   padding: 8px;
   width: 250px !important;
-  border: 1px solid #6c5ce7;
+  border: 1px solid var(--accent-color);
 }
 .discount button:hover{
-  border: 1px solid #6c5ce7;
-  color: #6c5ce7;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
 }
 
 .discount button
  {
   padding: 10px !important;
-  background-color: #6c5ce7 !important;
+  background-color: var(--accent-color) !important;
   color: white !important;
   border: none !important;
   cursor: pointer !important;
@@ -156,18 +156,19 @@
 
 .login{
   font-size: 14px;
-  color: #6c5ce7;
+  color: var(--accent-color);
 }
 
 .pay-now-btn {
   width: 100%;
   padding: 20px !important;
-  font-size: 16px !important;
-  background-color: #6c5ce7 !important;
+  font-size: 20px !important;
+  background-color: var(--accent-color) !important;
   color: white !important;
   border: none !important;
   border-radius: 5px !important;
   cursor: pointer !important;
+  text-align: center;
 }
 
 /* Total Section */

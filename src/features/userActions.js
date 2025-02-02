@@ -11,7 +11,6 @@ try{
     if(response.status === 200){
         navigate('/login')
     }
-
     dispatch(signupSuccess(response.data.message));
 }catch (error){
     dispatch(requestFailure(error.response?.data?.message || 'Signup failed'));

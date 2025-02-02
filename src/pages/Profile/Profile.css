@@ -119,6 +119,10 @@
 
 
 
+.tab-content {
+  display: block !important;
+  visibility: visible !important;
+}
 
 
 .addresses-title {

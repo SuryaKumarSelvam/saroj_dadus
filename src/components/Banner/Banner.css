@@ -25,11 +25,13 @@
 
 /* Content Centering */
 .banner-content {
-  position: relative;
+  position: relative !important;
   z-index: 2; /* Ensure it stays above the overlay */
   text-align: center;
   color: var(--accent-color); /* White text */
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for contrast */
+  top:0% !important;
+  left:0% !important;
 }
 
 .banner-content h1 {

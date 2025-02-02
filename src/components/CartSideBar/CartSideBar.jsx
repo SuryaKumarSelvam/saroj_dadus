@@ -1,8 +1,15 @@
 import React from 'react'
 import './CartSideBar.css'
+import { useSelector, useDispatch } from 'react-redux';
+import {removeFromCart} from '../../features/cartSlice'
+import { Link } from 'react-router-dom';
+
 
 const CartSideBar = ({ isOpen, toggleCart }) => {
       if (!isOpen) return null;
+  const {cartItems,totalPrice,totalQuantity} = useSelector(state => state.cart);
+  console.log(cartItems)
+   const dispatch = useDispatch();
 
   return (
     <>
@@ -19,26 +26,31 @@ const CartSideBar = ({ isOpen, toggleCart }) => {
           <span className="free-shipping">FREE shipping</span>
         </p>
         <hr />
-        <div className="cart-item">
+        {
+          cartItems.map((item,index)=>(
+            <div className="cart-item">
           <div className="item-image">
             <img
-              src="https://dadus.co.in/cdn/shop/files/5_ed6a8663-6790-43b2-8b35-def51fb7ea43_680x.png?v=1718370484"
+              src={item.image? item.image : 'https://dadus.co.in/cdn/shop/files/5_ed6a8663-6790-43b2-8b35-def51fb7ea43_680x.png?v=1718370484'}
               alt="Assorted Baklavas"
             />
           </div>
           <div className="item-details">
-            <p className="item-name">Assorted Baklavas (9pcs)</p>
-            <p className="item-price">₹ 1,410</p>
+            <p className="item-name">{item.name}(9pcs)</p>
+            <p className="item-price">{item.quantity} ×  ₹ {item.price}</p>
           </div>
-          <button className="remove-btn">Remove</button>
+          <button className="remove-btn" onClick={()=>dispatch(removeFromCart({id:item.id,weight:item.weight}))}>Remove</button>
         </div>
+          ))
+        }
+        
         <hr />
         <div className="cart-total">
           <p className="total-label">Total</p>
-          <p className="total-amount">₹ 1,410</p>
+          <p className="total-amount">₹ {totalPrice}</p>
         </div>
         <div className="cart-actions">
-          <button className="view-cart-btn">View Cart</button>
+          <Link to="/cart" className="view-cart-btn" onClick={toggleCart}>View Cart</Link>
           <button className="checkout-btn">Checkout</button>
         </div>
       </div>

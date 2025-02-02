@@ -8,32 +8,32 @@ import axiosInstance from '../../utils/axiosInstance'
 
 
 const Profile = ()=>{
-    const [activeTab,setActiveTab]= useState("Orders");
+   const [activeTab, setActiveTab] = useState("Orders"); // Ensure it starts with "Orders"
+
     const [userDetails, setUserDetails] = useState(null); 
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.userData.userId);
 
-    console.log(userId)
 
-    useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axiosInstance.get(`users/${userId}`);
-        console.log(response)
-        
-        setUserDetails(response.data);
-      } catch (error) {
-        console.error("Failed to fetch user details:", error);
-      }
-    };
 
-    if (userId) {
-      fetchUserDetails();
+   useEffect(() => {
+  const fetchUserDetails = async () => {
+    try {
+      const response = await axiosInstance.get(`users/${userId}`);
+      console.log(response);
+      setUserDetails(response.data);
+    } catch (error) {
+      console.error("Failed to fetch user details:", error);
     }
-  }, []);
+  };
 
-  console.log(userDetails)
+  if (userId) {
+    fetchUserDetails();
+  }
+}, [userId]); // Add userId as a dependency
+
+
 
     const handleTabClick = (tab)=>{
         setActiveTab(tab);
@@ -89,7 +89,7 @@ const Profile = ()=>{
             </button>
           </div>
         )}
-
+          {console.log(userDetails)}
         {activeTab === "Addresses" && (
           <div className="addresses-tab">
             <h2 className="addresses-title">Addresses</h2>
