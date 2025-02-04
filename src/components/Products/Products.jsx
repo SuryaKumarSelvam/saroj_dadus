@@ -116,12 +116,12 @@ console.log(products)
             <Link to={`/product/${product.name}/${product._id}`}>
             <div className="product-image-wrapper">
               <img
-                src={product.images[0]}
+                src={product.image}
                 alt={product.name}
                 className="product-image image-default"
               />
               <img
-                src={product.images[1]}
+                src={product.image}
                 alt={`${product.name} Hover`}
                 className="product-image image-hover"
               />

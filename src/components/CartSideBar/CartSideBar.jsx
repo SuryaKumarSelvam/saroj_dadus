@@ -31,8 +31,8 @@ const CartSideBar = ({ isOpen, toggleCart }) => {
             <div className="cart-item">
           <div className="item-image">
             <img
-              src={item.image? item.image : 'https://dadus.co.in/cdn/shop/files/5_ed6a8663-6790-43b2-8b35-def51fb7ea43_680x.png?v=1718370484'}
-              alt="Assorted Baklavas"
+              src={item.img? item.img : 'https://dadus.co.in/cdn/shop/files/5_ed6a8663-6790-43b2-8b35-def51fb7ea43_680x.png?v=1718370484'}
+              alt={item.name}
             />
           </div>
           <div className="item-details">

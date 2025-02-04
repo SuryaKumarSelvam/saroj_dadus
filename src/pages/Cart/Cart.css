@@ -33,7 +33,7 @@
 /* Left Side: Cart Items */
 .cart-items {
   flex: 2;
-  padding-right: 20px;
+  padding-right:100px;
 }
 
 .cart-header {
@@ -43,6 +43,7 @@
   border-bottom: 2px solid #ddd;
   padding-bottom: 10px;
   margin-bottom: 15px;
+  padding-left:10px
 }
 
 .cart-item {
@@ -105,25 +106,30 @@
 /* Right Side: Summary Box */
 .cart-summary {
   /* flex: 1; */
-  background: #f9f9f9;
-  padding: 20px;
+  background: transparent;
+  padding:30px;
   border-radius: 8px;
   border: 1px solid #ddd;
 }
-
+.summery-header{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
 .cart-summary h3 {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
 .summary-total {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .summary-tax {
   font-size: 0.9rem;
   color: gray;
+  padding-bottom: 10px;
 }
 
 .order-note {
@@ -145,6 +151,7 @@
   border-radius: 5px;
   margin-top: 15px;
   cursor: pointer;
+  text-align: center;
 }
 
 .checkout-button:hover {
@@ -179,7 +186,7 @@
   }
 
   .cart-item {
-    /* flex-direction: column; */
+    flex-direction: column;
     /* align-items: flex-start; */
     display: flex;
     width: 100%;
@@ -238,3 +245,4 @@
     font-size: 1rem;
   }
 }
+

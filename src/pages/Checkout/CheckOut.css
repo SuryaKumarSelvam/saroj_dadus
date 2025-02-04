@@ -86,7 +86,7 @@
 
 .qty-badge{
    position: absolute; 
-   left: 40px;
+   left: 60px;
    /* bottom: 40px; */
   background-color: var(--accent-color); 
   color: white; 
@@ -114,11 +114,13 @@
   margin: 0;
   font-size: 14px;
   font-weight: bold;
+  padding-left: 15px;
 }
 
 .item-details span {
   font-size: 13px;
   color: gray;
+  padding-left: 15px;
 }
 
 .item-price {

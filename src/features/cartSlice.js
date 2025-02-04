@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
 
+
 const loadCartFromLocalStorage = () => {
     try {
         const serializedCart = localStorage.getItem("cart");
@@ -94,7 +95,7 @@ const cartSlice = createSlice({
             state.totalPrice = 0;
 
             saveCartToLocalStorage(state); 
-             toast.success("Cart cleared successfully!");
+            //  toast.success("Cart cleared successfully!");
         }
     }
 });

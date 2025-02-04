@@ -1,14 +1,18 @@
 import {React,useState} from 'react';
 import './CheckOut.css';
-import { Link ,useLocation} from 'react-router-dom';
+import { Link ,useLocation,useNavigate} from 'react-router-dom';
 import {TextField,Select,MenuItem} from '@mui/material';
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material";
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import axiosInstance from '../../utils/axiosInstance';
+import { removeFromCart, updateQuantity ,clearCart} from "../../features/cartSlice";
+
 
 export const CheckOut = () => {
     const [showBillingFields, setShowBillingFields] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState("razorpay");
     const [errors, setErrors] = useState({});
+    const [responseError,setResponseError]=useState('')
     const [formData,setFormData] = useState(
       {
         firstName:"",
@@ -17,6 +21,7 @@ export const CheckOut = () => {
         company:"",
         etc:"",
         city:"",
+        country:"",
         state:"",
         pinCode:"",
         phone:"",
@@ -27,6 +32,11 @@ export const CheckOut = () => {
     
 
     const user = useSelector((state) => state.userData);
+       const dispatch = useDispatch();
+       const navigate = useNavigate();
+
+      const location = useLocation();
+      const { orderNote } = location.state || {};
 
 
   const handlePaymentChange = (event) => {
@@ -55,6 +65,7 @@ export const CheckOut = () => {
     if (!formData.lastName) newErrors.lastName = 'Last Name is required';
     if (!formData.address) newErrors.address = 'Address is required';
     if (!formData.city) newErrors.city = 'City is required';
+    if (!formData.country) newErrors.city = 'Country is required';
     if (!formData.pinCode) newErrors.pinCode = 'Pin Code is required';
     if (!formData.phone) newErrors.phone = 'Phone is required';
 
@@ -62,18 +73,61 @@ export const CheckOut = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-    const handleSubmit = ()=>{
+    const handleSubmit = async()=>{
 
       if (validate()) {
-      console.log('Form Submitted:', formData);
+      // console.log('Form Submitted:', formData);
+
+       const orderPayload = {
+            orderItems: cartItems.map((item) => ({
+              quantity: item.quantity,
+              unitPrice:item.quantity * item.price,
+              productId: item.id, // Ensure this is the correct field
+            })),
+            shippingAddress1: formData.address,
+            shippingAddress2: formData.etc, // Optional field
+            city: formData.city,
+            zip: formData.pinCode,
+            country: formData.country, // Change this dynamically if needed
+            phone: formData.phone,
+            status: "Pending",
+            user: user?.userId, // Ensure this is the correct field
+            slot: "Morning", // Can be dynamic based on user choice
+            bulkOrder: false,
+            order_code: `ORD${Date.now()}`, // Example of generating an order code
+            google_location_link: "https://maps.google.com/?q=40.7128,-74.0060", // Dynamic if needed
+            order_status: "Awaiting",
+            order_additional_comments: orderNote || "", // Pass the order note if available
+          };
+            console.log(orderPayload)
+
+            try{
+              const response = await axiosInstance.post('orders',orderPayload,{
+                // headers: {
+                //   "Content-Type": "application/json",
+                // },
+              })
+              console.log("Order submitted successfully:", response);
+              if(response.status = 201){
+                dispatch(clearCart())
+                console.log(response.data)
+                navigate('/profile')
+                // localStorage.clear('cart')
+              }
+              // response.data
+            }catch(error){
+              console.error("Error submitting order:", error);
+                 console.error("Error submitting order:", error);
+                 setResponseError({ general: error.response?.data?.message || "Something went wrong!" });
+                 
+            }
       
     }
 
     }
 
+    
 
-  const location = useLocation();
-  const { orderNote } = location.state || {};
 
   return (
      <div className="checkout-container">
@@ -115,21 +169,10 @@ export const CheckOut = () => {
        </div>
         <div className="row">
          <TextField id="outlined-basic" name='city' value={formData.city} onChange={handleInputChange} label="City" variant="outlined" className="input-field third-width" error={!!errors.city} helperText={errors.city} />
-          <Select
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
-        //   value={age}
-          label="Age"
-        //   onChange={handleChange}
-        className="third-width"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
+
+          <TextField id="outlined-basic" name='country' value={formData.country} onChange={handleInputChange} 
+          label="Country" variant="outlined" className="input-field third-width" error={!!errors.country} helperText={errors.country} />
+
          <TextField id="outlined-basic" name='pinCode' value={formData.pinCode} onChange={handleInputChange} label="Pin Code" variant="outlined" className="input-field third-width" error={!!errors.pinCode} helperText={errors.pincode} />
         </div>
        <div className="row">

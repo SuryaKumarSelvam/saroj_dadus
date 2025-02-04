@@ -23,6 +23,7 @@ export const login = (credentials, navigate) => async (dispatch) => {
     const response = await axiosInstance.post('/users/login', credentials);
     const { user, token, userid} = response.data;
     localStorage.setItem('token', token);
+    // localStorage.setItem('userid', userid);
     dispatch(loginSuccess({ user, token,userid }));
     navigate('/');
   } catch (error) {

@@ -39,6 +39,7 @@ const Cart = () => {
             <span>Product</span>
             <span>Quantity</span>
             <span>Total</span>
+            <span>Remove</span>
           </div>
 
           {cartItems.length === 0 ? (
@@ -76,8 +77,10 @@ const Cart = () => {
 
         {/* Right: Summary Box */}
         <div className="cart-summary">
-          <h3>Subtotal</h3>
+          <div className="summery-header">
+             <h3>Subtotal</h3>
           <p className="summary-total">₹ {totalPrice}</p>
+          </div>
           <p className="summary-tax">Tax included. Shipping calculated at checkout.</p>
 
           {/* Order Note */}

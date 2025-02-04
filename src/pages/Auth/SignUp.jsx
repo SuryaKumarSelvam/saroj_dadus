@@ -77,6 +77,7 @@ const handleSubmit= async(event)=>{
           <div className="form-group">
              <TextField id="outlined-basic" name='password'
               value={formData.password}
+              type='password'
               onChange={handleInputChange}
               error={!!errors.password}
               helperText={errors.password}
